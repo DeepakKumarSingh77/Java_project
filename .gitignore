@@ -1,0 +1,10 @@
+# Ignore compiled Java files
+*.class
+
+# Ignore build folders (optional)
+bin/
+out/
+
+# OS files
+.DS_Store
+Thumbs.db
