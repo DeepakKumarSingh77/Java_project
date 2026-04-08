@@ -3,7 +3,7 @@ import java.util.*;
 
 
 class Seat {
-    private final String seatId;  // e.g., A10
+    private final String seatId;  
     private final int row;
     private final int number;
 
@@ -30,7 +30,7 @@ class ShowSeat {
     private final Seat seat;
     private SeatStatus status;
 
-    private long lockedAt;   // 🔥 new
+    private long lockedAt;   
     private static final long LOCK_TIMEOUT = 2 * 60 * 1000; // 2 min
 
     private final ReentrantLock lock = new ReentrantLock();
@@ -43,7 +43,7 @@ class ShowSeat {
     public boolean lockSeat() {
         lock.lock();
         try {
-            // 🔥 check expiry
+            //check expiry
             if (status == SeatStatus.LOCKED &&
                 System.currentTimeMillis() - lockedAt > LOCK_TIMEOUT) {
                 status = SeatStatus.AVAILABLE;
@@ -149,7 +149,7 @@ class Show {
         this.startTime = startTime;
         this.endTime = endTime;
 
-        // 🔥 create ShowSeats from Screen seats
+        //create ShowSeats from Screen seats
         this.showSeats = new ArrayList<>();
         for (Seat seat : screen.getSeats()) {
             showSeats.add(new ShowSeat(seat));
